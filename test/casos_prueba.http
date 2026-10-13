@@ -1,0 +1,439 @@
+### TP1 A4 — García y Valentini
+### Ejecutar primero: python -m scripts.seed --reset
+### Ejecutar las peticiones en orden con REST Client (VS Code).
+### Los IDs 1 y 2 corresponden exclusivamente a ese seed; las altas usan respuestas dinámicas.
+@baseUrl = http://127.0.0.1:8000
+
+
+### Health live
+# Esperado: 200; {"estado":"vivo"}
+GET {{baseUrl}}/health/live
+
+
+### Health ready
+# Esperado: 200
+GET {{baseUrl}}/health/ready
+
+
+### C-01: ruta no entera
+# Esperado: 422
+GET {{baseUrl}}/clientes/abc
+
+
+### C-02: email duplicado
+# Esperado: 409; mensaje propio
+POST {{baseUrl}}/clientes/
+Content-Type: application/json
+
+{
+  "nombre": "Duplicado",
+  "email": "cliente@example.com"
+}
+
+
+### C-02: ISBN duplicado
+# Esperado: 409; mensaje propio
+POST {{baseUrl}}/libros/
+Content-Type: application/json
+
+{
+  "isbn": "978-950-00-0001-1",
+  "titulo": "ISBN repetido",
+  "precio": "100.00",
+  "stock": 5,
+  "editorial_id": 1,
+  "autores": [
+    {
+      "autor_id": 1,
+      "rol": "autor",
+      "orden": 1
+    }
+  ]
+}
+
+
+### C-03: primer perfil
+# Esperado: 201
+POST {{baseUrl}}/clientes/1/perfil
+Content-Type: application/json
+
+{
+  "telefono": "123456",
+  "direccion": "Calle de prueba 123"
+}
+
+
+### C-03: segundo perfil
+# Esperado: 409
+POST {{baseUrl}}/clientes/1/perfil
+Content-Type: application/json
+
+{
+  "telefono": "123456",
+  "direccion": "Calle de prueba 123"
+}
+
+
+### C-04: editorial inexistente
+# Esperado: 409
+POST {{baseUrl}}/libros/
+Content-Type: application/json
+
+{
+  "isbn": "editorial-inexistente",
+  "titulo": "ISBN repetido",
+  "precio": "100.00",
+  "stock": 5,
+  "editorial_id": 99999,
+  "autores": [
+    {
+      "autor_id": 1,
+      "rol": "autor",
+      "orden": 1
+    }
+  ]
+}
+
+
+### C-04: autor inexistente
+# Esperado: 409
+POST {{baseUrl}}/libros/
+Content-Type: application/json
+
+{
+  "isbn": "autor-inexistente",
+  "titulo": "ISBN repetido",
+  "precio": "100.00",
+  "stock": 5,
+  "editorial_id": 1,
+  "autores": [
+    {
+      "autor_id": 99999,
+      "rol": "autor",
+      "orden": 1
+    }
+  ]
+}
+
+
+### C-05: cliente inexistente
+# Esperado: 409
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 99999,
+  "renglones": [
+    {
+      "libro_id": 1,
+      "cantidad": 1
+    }
+  ]
+}
+
+
+### C-05: libro inexistente
+# Esperado: 409
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "renglones": [
+    {
+      "libro_id": 99999,
+      "cantidad": 1
+    }
+  ]
+}
+
+
+### C-06: venta con dos renglones
+# Esperado: 201; total 71000.00; precios 25000.00 y 21000.00
+# @name ventaDos
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "renglones": [
+    {
+      "libro_id": 1,
+      "cantidad": 2
+    },
+    {
+      "libro_id": 2,
+      "cantidad": 1
+    }
+  ]
+}
+
+
+### Preparar venta con un renglón
+# Esperado: 201; total 25000.00
+# @name ventaUno
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "renglones": [
+    {
+      "libro_id": 1,
+      "cantidad": 1
+    }
+  ]
+}
+
+
+### C-07: libro con un autor
+# Esperado: 200; exactamente 2 SELECT. Activar SQL_ECHO=true; evidencia en test/evidencia_C07.txt
+GET {{baseUrl}}/libros/1
+
+
+### C-07: libro con dos autores
+# Esperado: 200; exactamente 2 SELECT. Activar SQL_ECHO=true; evidencia en test/evidencia_C07.txt
+GET {{baseUrl}}/libros/2
+
+
+### C-07: venta con un renglón
+# Esperado: 200; exactamente 2 SELECT. Activar SQL_ECHO=true; evidencia en test/evidencia_C07.txt
+GET {{baseUrl}}/ventas/{{ventaUno.response.body.$.id}}
+
+
+### C-07: venta con dos renglones
+# Esperado: 200; exactamente 2 SELECT. Activar SQL_ECHO=true; evidencia en test/evidencia_C07.txt
+GET {{baseUrl}}/ventas/{{ventaDos.response.body.$.id}}
+
+
+### C-08: búsqueda literal con comillas
+# Esperado: 200; []
+GET {{baseUrl}}/libros/?titulo=%27%20OR%20%271%27=%271
+
+
+### Búsqueda sin distinguir mayúsculas
+# Esperado: 200; Rayuela
+GET {{baseUrl}}/libros/?titulo=RAYU
+
+
+### Filtro de género
+# Esperado: 200; libros del género 1
+GET {{baseUrl}}/libros/?genero_id=1
+
+
+### Género sin libros
+# Esperado: 200; []
+GET {{baseUrl}}/libros/?genero_id=99999
+
+
+### Navegación /editoriales/1/libros
+# Esperado: 200; máximo un resultado
+GET {{baseUrl}}/editoriales/1/libros?limit=1&offset=0
+
+
+### Paginación inválida /editoriales/1/libros
+# Esperado: 422
+GET {{baseUrl}}/editoriales/1/libros?limit=101
+
+
+### Recurso padre inexistente
+# Esperado: 404
+GET {{baseUrl}}/editoriales/99999/libros
+
+
+### Navegación /generos/1/libros
+# Esperado: 200; máximo un resultado
+GET {{baseUrl}}/generos/1/libros?limit=1&offset=0
+
+
+### Paginación inválida /generos/1/libros
+# Esperado: 422
+GET {{baseUrl}}/generos/1/libros?limit=101
+
+
+### Recurso padre inexistente
+# Esperado: 404
+GET {{baseUrl}}/generos/99999/libros
+
+
+### Navegación /autores/1/libros
+# Esperado: 200; máximo un resultado
+GET {{baseUrl}}/autores/1/libros?limit=1&offset=0
+
+
+### Paginación inválida /autores/1/libros
+# Esperado: 422
+GET {{baseUrl}}/autores/1/libros?limit=101
+
+
+### Recurso padre inexistente
+# Esperado: 404
+GET {{baseUrl}}/autores/99999/libros
+
+
+### Navegación /clientes/1/ventas
+# Esperado: 200; máximo un resultado
+GET {{baseUrl}}/clientes/1/ventas?limit=1&offset=0
+
+
+### Paginación inválida /clientes/1/ventas
+# Esperado: 422
+GET {{baseUrl}}/clientes/1/ventas?limit=101
+
+
+### Recurso padre inexistente
+# Esperado: 404
+GET {{baseUrl}}/clientes/99999/ventas
+
+
+### PATCH parcial editoriales
+# Esperado: 200; conserva campos omitidos
+PATCH {{baseUrl}}/editoriales/1
+Content-Type: application/json
+
+{
+  "pais": "Argentina"
+}
+
+
+### PATCH parcial autores
+# Esperado: 200; conserva campos omitidos
+PATCH {{baseUrl}}/autores/1
+Content-Type: application/json
+
+{
+  "nacionalidad": "Argentina"
+}
+
+
+### PATCH parcial clientes
+# Esperado: 200; conserva campos omitidos
+PATCH {{baseUrl}}/clientes/1
+Content-Type: application/json
+
+{
+  "nombre": "Cliente actualizado"
+}
+
+
+### PATCH parcial libros
+# Esperado: 200; conserva campos omitidos
+PATCH {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "precio": "26000.00"
+}
+
+
+### Precio histórico inmutable
+# Esperado: 200; conserva precio_unitario 25000.00 y total 71000.00
+GET {{baseUrl}}/ventas/{{ventaDos.response.body.$.id}}
+
+
+### Ventas no se modifican
+# Esperado: 405
+PATCH {{baseUrl}}/ventas/{{ventaDos.response.body.$.id}}
+Content-Type: application/json
+
+{
+  "total": "0"
+}
+
+
+### Lista de renglones vacía
+# Esperado: 422
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "renglones": []
+}
+
+
+### Libros repetidos
+# Esperado: 422
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "renglones": [
+    {
+      "libro_id": 1,
+      "cantidad": 1
+    },
+    {
+      "libro_id": 1,
+      "cantidad": 1
+    }
+  ]
+}
+
+
+### Precio no positivo
+# Esperado: 422
+PATCH {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "precio": "0"
+}
+
+
+### Stock negativo
+# Esperado: 422
+PATCH {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "stock": -1
+}
+
+
+### Campo requerido no acepta null
+# Esperado: 422
+PATCH {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "titulo": null
+}
+
+
+### Quitar género opcional
+# Esperado: 200; genero null
+PATCH {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "genero_id": null
+}
+
+
+### Restaurar género
+# Esperado: 200
+PATCH {{baseUrl}}/libros/1
+Content-Type: application/json
+
+{
+  "genero_id": 1
+}
+
+
+### Precio no es dato de entrada de venta
+# Esperado: 422
+POST {{baseUrl}}/ventas/
+Content-Type: application/json
+
+{
+  "cliente_id": 1,
+  "renglones": [
+    {
+      "libro_id": 1,
+      "cantidad": 1,
+      "precio_unitario": "1"
+    }
+  ]
+}
