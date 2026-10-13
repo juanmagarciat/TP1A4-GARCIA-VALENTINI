@@ -1,0 +1,118 @@
+<entorno_virtual>\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+2026-10-13 19:58:36,368 [INFO] libreria: Iniciando motor de base de datos asincrónico...
+test_01_contratos_y_relaciones (test_integracion.Integracion.test_01_contratos_y_relaciones) ... 2026-10-13 19:58:36,371 [INFO] httpx: HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,411 [INFO] httpx: HTTP Request: GET http://testserver/health/ready "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,432 [INFO] httpx: HTTP Request: GET http://testserver/clientes/abc "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,434 [INFO] httpx: HTTP Request: GET http://testserver/libros/?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,436 [INFO] httpx: HTTP Request: GET http://testserver/libros/?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,437 [INFO] httpx: HTTP Request: GET http://testserver/libros/?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,440 [INFO] httpx: HTTP Request: GET http://testserver/ventas/?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,441 [INFO] httpx: HTTP Request: GET http://testserver/ventas/?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,443 [INFO] httpx: HTTP Request: GET http://testserver/ventas/?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,444 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,445 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,446 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,448 [INFO] httpx: HTTP Request: GET http://testserver/generos/?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,449 [INFO] httpx: HTTP Request: GET http://testserver/generos/?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,450 [INFO] httpx: HTTP Request: GET http://testserver/generos/?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,452 [INFO] httpx: HTTP Request: GET http://testserver/autores/?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,453 [INFO] httpx: HTTP Request: GET http://testserver/autores/?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,454 [INFO] httpx: HTTP Request: GET http://testserver/autores/?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,456 [INFO] httpx: HTTP Request: GET http://testserver/clientes/?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,457 [INFO] httpx: HTTP Request: GET http://testserver/clientes/?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,458 [INFO] httpx: HTTP Request: GET http://testserver/clientes/?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,459 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/1/libros?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,460 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/1/libros?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,461 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/1/libros?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,462 [INFO] httpx: HTTP Request: GET http://testserver/generos/1/libros?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,463 [INFO] httpx: HTTP Request: GET http://testserver/generos/1/libros?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,464 [INFO] httpx: HTTP Request: GET http://testserver/generos/1/libros?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,465 [INFO] httpx: HTTP Request: GET http://testserver/autores/1/libros?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,466 [INFO] httpx: HTTP Request: GET http://testserver/autores/1/libros?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,467 [INFO] httpx: HTTP Request: GET http://testserver/autores/1/libros?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,469 [INFO] httpx: HTTP Request: GET http://testserver/clientes/1/ventas?limit=0 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,470 [INFO] httpx: HTTP Request: GET http://testserver/clientes/1/ventas?offset=-1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,470 [INFO] httpx: HTTP Request: GET http://testserver/clientes/1/ventas?limit=101 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,477 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/99999/libros "HTTP/1.1 404 Not Found"
+2026-10-13 19:58:36,483 [INFO] httpx: HTTP Request: GET http://testserver/generos/99999/libros "HTTP/1.1 404 Not Found"
+2026-10-13 19:58:36,487 [INFO] httpx: HTTP Request: GET http://testserver/autores/99999/libros "HTTP/1.1 404 Not Found"
+2026-10-13 19:58:36,496 [INFO] httpx: HTTP Request: GET http://testserver/clientes/99999/ventas "HTTP/1.1 404 Not Found"
+2026-10-13 19:58:36,512 [INFO] httpx: HTTP Request: GET http://testserver/editoriales/1/libros "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,519 [INFO] httpx: HTTP Request: GET http://testserver/generos/1/libros "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,559 [INFO] httpx: HTTP Request: GET http://testserver/autores/1/libros "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,564 [INFO] httpx: HTTP Request: GET http://testserver/libros/?titulo=%27+OR+%271%27%3D%271 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,568 [INFO] httpx: HTTP Request: GET http://testserver/libros/?titulo=RAYU "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,570 [INFO] httpx: HTTP Request: GET http://testserver/libros/?genero_id=99999 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,576 [INFO] httpx: HTTP Request: PATCH http://testserver/editoriales/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,577 [INFO] httpx: HTTP Request: PATCH http://testserver/editoriales/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,582 [INFO] httpx: HTTP Request: PATCH http://testserver/autores/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,583 [INFO] httpx: HTTP Request: PATCH http://testserver/autores/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,588 [INFO] httpx: HTTP Request: PATCH http://testserver/clientes/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,589 [INFO] httpx: HTTP Request: PATCH http://testserver/clientes/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,598 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,599 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,605 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,612 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:36,613 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,614 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,618 [INFO] httpx: HTTP Request: POST http://testserver/clientes/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,624 [INFO] httpx: HTTP Request: POST http://testserver/clientes/1/perfil "HTTP/1.1 201 Created"
+2026-10-13 19:58:36,627 [INFO] httpx: HTTP Request: POST http://testserver/clientes/1/perfil "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,629 [INFO] httpx: HTTP Request: POST http://testserver/clientes/99999/perfil "HTTP/1.1 404 Not Found"
+2026-10-13 19:58:36,636 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 201 Created"
+2026-10-13 19:58:36,639 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,642 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,644 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,647 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,648 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,649 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,655 [INFO] httpx: HTTP Request: POST http://testserver/editoriales/ "HTTP/1.1 201 Created"
+2026-10-13 19:58:36,661 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/3 "HTTP/1.1 200 OK"
+ok
+test_02_ventas_y_consultas (test_integracion.Integracion.test_02_ventas_y_consultas) ... 2026-10-13 19:58:36,663 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,664 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,665 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,668 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,670 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:36,672 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 422 Unprocessable Entity"
+2026-10-13 19:58:36,690 [INFO] libreria.ventas: [COMPROBANTE] Iniciando simulación de envío de comprobante para venta #1 a 'cliente@example.com'...
+2026-10-13 19:58:37,196 [INFO] libreria.ventas: [COMPROBANTE] Comprobante para venta #1 enviado exitosamente a 'cliente@example.com'.
+2026-10-13 19:58:37,196 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 201 Created"
+2026-10-13 19:58:37,204 [INFO] libreria.ventas: [COMPROBANTE] Iniciando simulación de envío de comprobante para venta #2 a 'cliente@example.com'...
+2026-10-13 19:58:37,709 [INFO] libreria.ventas: [COMPROBANTE] Comprobante para venta #2 enviado exitosamente a 'cliente@example.com'.
+2026-10-13 19:58:37,709 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 201 Created"
+2026-10-13 19:58:37,718 [INFO] httpx: HTTP Request: PATCH http://testserver/libros/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:37,722 [INFO] httpx: HTTP Request: GET http://testserver/ventas/2 "HTTP/1.1 200 OK"
+2026-10-13 19:58:37,729 [INFO] httpx: HTTP Request: GET http://testserver/clientes/1/ventas "HTTP/1.1 200 OK"
+2026-10-13 19:58:37,731 [INFO] httpx: HTTP Request: PATCH http://testserver/ventas/1 "HTTP/1.1 405 Method Not Allowed"
+2026-10-13 19:58:37,736 [INFO] httpx: HTTP Request: GET http://testserver/libros/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:37,739 [INFO] httpx: HTTP Request: GET http://testserver/libros/2 "HTTP/1.1 200 OK"
+2026-10-13 19:58:37,743 [INFO] httpx: HTTP Request: GET http://testserver/ventas/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:37,747 [INFO] httpx: HTTP Request: GET http://testserver/ventas/2 "HTTP/1.1 200 OK"
+ok
+test_03_stock_concurrente_y_rollback (test_integracion.Integracion.test_03_stock_concurrente_y_rollback) ... 2026-10-13 19:58:37,752 [INFO] httpx: HTTP Request: POST http://testserver/libros/ "HTTP/1.1 201 Created"
+2026-10-13 19:58:37,765 [INFO] libreria.ventas: [COMPROBANTE] Iniciando simulación de envío de comprobante para venta #3 a 'cliente@example.com'...
+2026-10-13 19:58:37,798 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:38,258 [INFO] libreria.ventas: [COMPROBANTE] Comprobante para venta #3 enviado exitosamente a 'cliente@example.com'.
+2026-10-13 19:58:38,258 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 201 Created"
+2026-10-13 19:58:38,263 [INFO] httpx: HTTP Request: GET http://testserver/libros/8 "HTTP/1.1 200 OK"
+2026-10-13 19:58:38,275 [INFO] httpx: HTTP Request: GET http://testserver/libros/1 "HTTP/1.1 200 OK"
+2026-10-13 19:58:38,279 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 409 Conflict"
+2026-10-13 19:58:38,283 [INFO] httpx: HTTP Request: GET http://testserver/libros/1 "HTTP/1.1 200 OK"
+ok
+test_04_background_no_bloquea_y_confirma_antes (test_integracion.Integracion.test_04_background_no_bloquea_y_confirma_antes) ... 2026-10-13 19:58:38,318 [INFO] httpx: HTTP Request: GET http://testserver/ventas/ "HTTP/1.1 200 OK"
+2026-10-13 19:58:38,333 [INFO] libreria.ventas: [COMPROBANTE] Iniciando simulación de envío de comprobante para venta #4 a 'cliente@example.com'...
+2026-10-13 19:58:38,334 [INFO] httpx: HTTP Request: GET http://testserver/health/live "HTTP/1.1 200 OK"
+2026-10-13 19:58:38,339 [INFO] httpx: HTTP Request: GET http://testserver/ventas/ "HTTP/1.1 200 OK"
+2026-10-13 19:58:38,855 [INFO] libreria.ventas: [COMPROBANTE] Comprobante para venta #4 enviado exitosamente a 'cliente@example.com'.
+2026-10-13 19:58:38,855 [INFO] httpx: HTTP Request: POST http://testserver/ventas/ "HTTP/1.1 201 Created"
+ok
+test_05_health_no_expone_error_interno (test_integracion.Integracion.test_05_health_no_expone_error_interno) ... 2026-10-13 19:58:38,867 [INFO] httpx: HTTP Request: GET http://testserver/health/ready "HTTP/1.1 503 Service Unavailable"
+ok
+2026-10-13 19:58:38,868 [INFO] libreria: Cerrando motor de base de datos asincrónico...
+
+----------------------------------------------------------------------
+Ran 5 tests in 2.792s
+
+OK
